@@ -9,14 +9,17 @@ var FormView = {
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
+    var e = document.getElementById('roomName');
+    var strUser = e.options[e.selectedIndex].value;
+    var roomName = strUser.split(' ').join('');
 
     var message = {
       username: App.username,
       text: document.getElementById('message').value,
-      roomname: 'SF'
+      roomname: roomName,
     };
     Parse.create(message);
-    // console.log(document.getElementById('message').value)
+    setTimeout(MessagesView.render, 100);
   },
 
   setStatus: function(active) {

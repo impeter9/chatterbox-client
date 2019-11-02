@@ -46,10 +46,12 @@ body {
     line-height: 13px;
 }
 
+
+
 form {
     padding: 20px;
     padding-left: 0;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 form input[type=text] {
@@ -58,6 +60,11 @@ form input[type=text] {
     font-size: 12px;
     padding: 5px;
 }
+
+#new_room_name {
+    width: 30%;
+}
+
 
 .chat {
     padding: 5px;
@@ -88,3 +95,9 @@ form input[type=text] {
     background-color: #0090da;
 }
 
+.message {
+    border: 1px solid;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 5px;
+}

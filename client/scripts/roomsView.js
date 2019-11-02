@@ -4,6 +4,10 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
+    $('.joinRoom').click(function() {
+      RoomsView.render();
+    });
+
     App.fetch((data) => {
       var obj = {};
       for (var i = 0; i < data.results.length; i++) {
@@ -17,24 +21,21 @@ var RoomsView = {
     });
   },
 
+
   render: function() {
+    var e = document.getElementById('roomName');
+    var strUser = e.options[e.selectedIndex].value;
+    var room = '.' + strUser.split(' ').join('');
+    $('.message').hide();
+    $(room).show();
+    console.log(room);
   },
 
   renderRoom: function(room) {
-    // var compiled = _.template(
-    //   '<option class="<%- room %>">' +
-    //     '<div class="username">' +
-    //       '<%- username %>' +
-    //     '</div>' +
-    //     '<div class="text">' +
-    //       '<%- text %>' +
-    //     '</div>' +
-    //     '<div>----</div>' +
-    //   '</div>'
-    // );
-    var html = '<option class="room" value="' + room + '">' + room + '</option>';
-
-    $('#rooms select').append(html);
+    if (room !== 'Home') {
+      var html = '<option class="room" value="' + room + '">' + room + '</option>';
+      $('#rooms select').append(html);
+    }
   },
 
 };
