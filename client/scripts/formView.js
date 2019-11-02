@@ -9,8 +9,14 @@ var FormView = {
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
-    
-    console.log('click!');
+
+    var message = {
+      username: App.username,
+      text: document.getElementById('message').value,
+      roomname: 'SF'
+    };
+    Parse.create(message);
+    // console.log(document.getElementById('message').value)
   },
 
   setStatus: function(active) {
