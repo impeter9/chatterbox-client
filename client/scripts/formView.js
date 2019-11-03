@@ -9,6 +9,7 @@ var FormView = {
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
+
     var e = document.getElementById('roomName');
     var strUser = e.options[e.selectedIndex].value;
     var roomName = strUser.split(' ').join('');
@@ -19,7 +20,8 @@ var FormView = {
       roomname: roomName,
     };
     Parse.create(message);
-    setTimeout(MessagesView.render, 100);
+    setTimeout(MessagesView.render, 1);
+    $('#message').val('');
   },
 
   setStatus: function(active) {

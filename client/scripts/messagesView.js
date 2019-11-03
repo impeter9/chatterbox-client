@@ -12,10 +12,18 @@ var MessagesView = {
         }
       }
     });
+
+    $('div').on('click', '.username', function () {
+      console.log('something');
+      var user = '.' + $(this).attr('class').split(' ')[1];
+      $(user).addClass('friend');
+
+    });
+
   },
 
   render: function() {
-    App.fetch((data) =>  {
+    App.fetch((data) => {
       for (var i = data.results.length - 1; i > -1; i--) {
         if ((data.results[i].username) && (data.results[i].text) && (data.results[i].roomname) && (new Date(data.results[i].createdAt) > new Date(MessagesView.storage[0]))) {
           MessagesView.renderNewMessage(data.results[i]);
@@ -27,8 +35,9 @@ var MessagesView = {
 
   renderNewMessage: function(message) {
     var compiled = _.template(
+      // '<div class="message ' + message.roomname.split(' ').join('') + '">' +
       '<div class="message ' + message.roomname.split(' ').join('') + '">' +
-        '<div class="username">' +
+        '<div class="username ' + message.username.split(' ').join('') + '">' +
           '<%- username %>' +
         '</div>' +
         '<div class="text">' +
@@ -44,7 +53,7 @@ var MessagesView = {
   renderMessage: function(message) {
     var compiled = _.template(
       '<div class="message ' + message.roomname.split(' ').join('') + '">' +
-        '<div class="username">' +
+        '<div class="username ' + message.username.split(' ').join('') + '">' +
           '<%- username %>' +
         '</div>' +
         '<div class="text">' +
